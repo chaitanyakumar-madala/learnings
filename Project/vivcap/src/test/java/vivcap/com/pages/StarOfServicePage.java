@@ -95,4 +95,18 @@ public class StarOfServicePage {
 
 	@FindBy(xpath = "//input[@placeholder='Email address']")
 	private static WebElement emailplaceholder;
+
+	@FindBy(xpath = "//div[contains(@class,'commonFormTitle')]")
+	private static WebElement questionsElement;
+
+	public static WebElement getQuestionsElement() {
+		return questionsElement;
+	}
+
+	@FindBy(xpath = "//label[@class='styles__itemV2___1Vo1Z styles__itemBase___rDyIf']")
+	private static WebElement randomAnswer;
+
+	public static WebElement getRandomAnswer() {
+		return randomAnswer;
+	}
 }

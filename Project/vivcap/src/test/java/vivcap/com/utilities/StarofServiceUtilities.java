@@ -1,12 +1,19 @@
 package vivcap.com.utilities;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -134,6 +141,26 @@ public class StarofServiceUtilities extends LaunchDriver {
 			return true;
 		else
 			return false;
+	}
+
+	public Map<String, String> questions() throws IOException {
+		String path = "resources/questions.xlsx";
+		FileInputStream fis = new FileInputStream(path);
+		XSSFWorkbook workbook = new XSSFWorkbook(fis);
+		XSSFSheet sheet = workbook.getSheetAt(0);
+		int lastRow = sheet.getLastRowNum();
+		Map<String, String> dataMap = new HashMap<String, String>();
+		for (int i = 0; i <= lastRow; i++) {
+			Row row = sheet.getRow(i);
+			Cell valueCell = row.getCell(1);
+			Cell keyCell = row.getCell(0);
+			String value = valueCell.getStringCellValue().trim();
+			String key = keyCell.getStringCellValue().trim();
+			dataMap.put(key, value);
+
+		}
+		workbook.close();
+		return dataMap;
 	}
 
 }

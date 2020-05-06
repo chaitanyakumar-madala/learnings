@@ -2,6 +2,7 @@ package vivcap.com.testcases;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,7 @@ public class StarofServiceTests {
 	LaunchDriver launchDriver = new LaunchDriver();
 	StarofServiceUtilities starUtilities = new StarofServiceUtilities();
 
-	// TestNG class ,here we initiate brower
+	// TestNG class ,here we initiate browser
 	@BeforeClass
 	public void launchBrowser() throws IOException {
 		driver = launchDriver.initiateDriver();
@@ -33,6 +34,10 @@ public class StarofServiceTests {
 		Properties p = new Properties();
 		p.load(reader);
 
+		// read questions from excel
+		HashMap<String, String> questions = new HashMap<String, String>();
+		questions.putAll(starUtilities.questions());
+
 		// can pass data from various sources
 		final String url = "https://www.starofservice.in/dir/telangana/hyderabad/hyderabad/plumbing#/";
 		final String cityname = p.getProperty("city");
@@ -42,50 +47,32 @@ public class StarofServiceTests {
 		final String message = "Test message";
 		final String datemessage = p.getProperty("datemessage");
 
-		// pagefactory to pass driver to actions class
-		PageFactory.initElements(driver, StarOfServicePageActions.class);
+		PageFactory.initElements(driver, StarOfServicePageActions.class);// pagefactory to pass driver to actions class
+		StarOfServicePageActions.launchURL(url);// launch URL
+		StarOfServicePageActions.enterCity(cityname);// Enter City name
+		StarOfServicePageActions.clickGo();// click Go
+		StarOfServicePageActions.clickNextButton();// click Next
+		StarOfServicePageActions.answerToQuestion(questions, message);// Select questions and answers and enter messgae
+																		// to technician
 
-		// launch URL
-		StarOfServicePageActions.launchURL(url);
+		/*
+		 * Static methods can select only questions which are already present
+		 * StarOfServicePageActions.slectProblems(problem);//select Problem
+		 * StarOfServicePageActions.selectNeed(need);// select need
+		 * StarOfServicePageActions.problemYouhave(problemyouhave); // select
+		 * problemyouhave StarOfServicePageActions.plumberneedstoKnow(message);//
+		 * 
+		 */
 
-		// Enter City name
-		StarOfServicePageActions.enterCity(cityname);
-
-		// click Go
-		StarOfServicePageActions.clickGo();
-
-		// click Next
-		StarOfServicePageActions.clickNextButton();
-
-		// select Problem
-		StarOfServicePageActions.slectProblems(problem);
-
-		// select need
-		StarOfServicePageActions.selectNeed(need);
-
-		// select problemyouhave
-		StarOfServicePageActions.problemYouhave(problemyouhave);
-
-		// Enter message to technician
-		StarOfServicePageActions.plumberneedstoKnow(message);
-
-		// select type of date for technician
-		StarOfServicePageActions.technicianDate(datemessage);
-
-		// Selcte date for technician
-		StarOfServicePageActions.requiredDate();
-
-		// Select time
-		StarOfServicePageActions.selectTime();
-
-		// wait for email screen
-		StarOfServicePageActions.waitForEmailScreen();
+		StarOfServicePageActions.technicianDate(datemessage);// select technican date message
+		StarOfServicePageActions.requiredDate();// Selcte date for technician
+		StarOfServicePageActions.selectTime();// Select time
+		StarOfServicePageActions.waitForEmailScreen();// wait for email screen
 	}
 
-	// After class drivers quits here
 	@AfterClass
 	public void closeDriver() {
-		starUtilities.quitDriver(driver);
+		starUtilities.quitDriver(driver);// quits driver
 	}
 
 }

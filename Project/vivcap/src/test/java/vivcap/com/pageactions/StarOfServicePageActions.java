@@ -2,12 +2,13 @@ package vivcap.com.pageactions;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.TimeZone;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 import vivcap.com.pages.StarOfServicePage;
 import vivcap.com.utilities.StarofServiceUtilities;
@@ -30,8 +31,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -46,7 +47,7 @@ public class StarOfServicePageActions extends StarOfServicePage {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
 			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+
 		}
 
 	}
@@ -60,8 +61,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -74,12 +75,63 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
-	//
+	public static void answerToQuestion(HashMap<String, String> questions, String message) throws IOException {
+		try {
+			starUtils.waitForElementToBeEnabled(getQuestionsElement(), driver);
+			while (!questions.get("qstn").equals(getQuestionsElement().getText().trim())) {
+				boolean randomQtn = true;
+				Iterator<String> it = questions.keySet().iterator();
+				randomQtn = true;
+				starUtils.waitForElementToBeEnabled(getQuestionsElement(), driver);
+				while (it.hasNext()) {
+					String key = it.next();
+					if (key.equals(getQuestionsElement().getText().trim())) {
+
+						starUtils.waitForElementToBeEnabled(driver.findElement(By.xpath("//label/input[@name='" + key
+								+ "']/parent::label/div[@class='styles__iconContainer___1sNdo']/following::div[contains(text(),'"
+								+ questions.get(key) + "')]")), driver);
+						driver.findElement(By.xpath("//label/input[@name='" + key
+								+ "']/parent::label/div[@class='styles__iconContainer___1sNdo']/following::div[contains(text(),'"
+								+ questions.get(key) + "')]")).click();
+						StarofServiceUtilities.takeScreenShot(driver);
+						getNextbtnafterqstns().click();
+						it.remove();
+						randomQtn = false;
+
+					}
+				}
+				if (randomQtn) {
+					starUtils.waitForElementToBeEnabled(getQuestionsElement(), driver);
+					// click on new questions added
+					getRandomAnswer().click();
+
+				}
+			}
+			if (questions.get("qstn").equals(getQuestionsElement().getText().trim())) {
+				try {
+					starUtils.waitForElementToBeEnabled(getProblemMessage(), driver);
+					getProblemMessage().clear();
+					getProblemMessage().sendKeys(message);
+					StarofServiceUtilities.takeScreenShot(driver);
+					clickNextButton();
+				} catch (Exception e) {
+					StarofServiceUtilities.takeScreenShot(driver);
+					e.printStackTrace();
+					throw e;
+				}
+			}
+		} catch (Exception e) {
+			StarofServiceUtilities.takeScreenShot(driver);
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
 	public static void slectProblems(String slectProblem) throws IOException {
 		try {
 			starUtils.waitForElementToBeEnabled(driver.findElement(By.xpath(
@@ -96,13 +148,13 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
 	// select problem here
-	public static void selectNeed(String need) {
+	public static void selectNeed(String need) throws Exception {
 		try {
 			starUtils.waitForElementToBeEnabled(driver.findElement(By.xpath(
 					"//label/input[@name='What do you need done?']/parent::label/div[@class='styles__iconContainer___1sNdo']/following::div[contains(text(),'"
@@ -116,9 +168,10 @@ public class StarOfServicePageActions extends StarOfServicePage {
 			StarofServiceUtilities.takeScreenShot(driver);
 			getNextButton1().click();
 		} catch (Exception e) {
+			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -139,8 +192,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -155,8 +208,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -167,8 +220,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -189,8 +242,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -273,8 +326,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -290,8 +343,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 		} catch (Exception e) {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
-			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+			throw e;
+
 		}
 	}
 
@@ -305,7 +358,7 @@ public class StarOfServicePageActions extends StarOfServicePage {
 			StarofServiceUtilities.takeScreenShot(driver);
 			e.printStackTrace();
 			System.out.println(e.getMessage());
-			Assert.assertFalse(true);
+
 		}
 	}
 }
