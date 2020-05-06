@@ -41,9 +41,9 @@ public class StarofServiceTests {
 		// can pass data from various sources
 		final String url = "https://www.starofservice.in/dir/telangana/hyderabad/hyderabad/plumbing#/";
 		final String cityname = p.getProperty("city");
-		final String problem = p.getProperty("problem");
-		final String need = p.getProperty("need");
-		final String problemyouhave = p.getProperty("problemyouhave");
+		//final String problem = p.getProperty("problem");
+		//final String need = p.getProperty("need");
+		//final String problemyouhave = p.getProperty("problemyouhave");
 		final String message = "Test message";
 		final String datemessage = p.getProperty("datemessage");
 
