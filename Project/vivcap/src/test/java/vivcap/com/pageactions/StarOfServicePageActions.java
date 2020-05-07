@@ -107,7 +107,8 @@ public class StarOfServicePageActions extends StarOfServicePage {
 				}
 				if (randomQtn) {
 					starUtils.waitForElementToBeEnabled(getQuestionsElement(), driver);
-					// click on new questions added
+					starUtils.waitForElementToBeEnabled(getRandomAnswer(), driver);
+					//click on answers for questions added
 					getRandomAnswer().click();
 
 				}
