@@ -73,7 +73,7 @@ public class StarofServiceUtilities extends LaunchDriver {
 			day = "Friday";
 			break;
 		case 7:
-			day = "Satruday";
+			day = "Saturday";
 			break;
 
 		}
@@ -124,7 +124,6 @@ public class StarofServiceUtilities extends LaunchDriver {
 		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 		int year = calendar.get(Calendar.YEAR);
 		boolean leap = false;
-
 		if (year % 4 == 0) {
 			if (year % 100 == 0) {
 				// year is divisible by 400, hence the year is a leap year
