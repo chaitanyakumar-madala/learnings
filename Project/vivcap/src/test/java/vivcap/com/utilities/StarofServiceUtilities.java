@@ -73,7 +73,7 @@ public class StarofServiceUtilities extends LaunchDriver {
 			day = "Friday";
 			break;
 		case 7:
-			day = "Satruday";
+			day = "Saturday";
 			break;
 
 		}
