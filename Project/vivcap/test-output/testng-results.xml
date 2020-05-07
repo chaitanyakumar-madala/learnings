@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="37532" started-at="2020-05-07T02:01:06Z" finished-at="2020-05-07T02:01:43Z">
+  <suite name="Default suite" duration-ms="36353" started-at="2020-05-06T12:37:39Z" finished-at="2020-05-06T12:38:15Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="37532" started-at="2020-05-07T02:01:06Z" finished-at="2020-05-07T02:01:43Z">
+    <test name="Default test" duration-ms="36353" started-at="2020-05-06T12:37:39Z" finished-at="2020-05-06T12:38:15Z">
       <class name="vivcap.com.testcases.StarofServiceTests">
-        <test-method status="PASS" signature="launchBrowser()[pri:0, instance:vivcap.com.testcases.StarofServiceTests@2a2d45ba]" name="launchBrowser" is-config="true" duration-ms="8087" started-at="2020-05-07T07:31:06Z" finished-at="2020-05-07T07:31:14Z">
+        <test-method status="PASS" signature="launchBrowser()[pri:0, instance:vivcap.com.testcases.StarofServiceTests@2a2d45ba]" name="launchBrowser" is-config="true" duration-ms="10464" started-at="2020-05-06T18:07:39Z" finished-at="2020-05-06T18:07:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- launchBrowser -->
-        <test-method status="PASS" signature="startTestcase()[pri:0, instance:vivcap.com.testcases.StarofServiceTests@2a2d45ba]" name="startTestcase" duration-ms="28613" started-at="2020-05-07T07:31:14Z" finished-at="2020-05-07T07:31:43Z">
+        <test-method status="PASS" signature="startTestcase()[pri:0, instance:vivcap.com.testcases.StarofServiceTests@2a2d45ba]" name="startTestcase" duration-ms="25106" started-at="2020-05-06T18:07:49Z" finished-at="2020-05-06T18:08:14Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startTestcase -->
-        <test-method status="PASS" signature="closeDriver()[pri:0, instance:vivcap.com.testcases.StarofServiceTests@2a2d45ba]" name="closeDriver" is-config="true" duration-ms="802" started-at="2020-05-07T07:31:43Z" finished-at="2020-05-07T07:31:43Z">
+        <test-method status="PASS" signature="closeDriver()[pri:0, instance:vivcap.com.testcases.StarofServiceTests@2a2d45ba]" name="closeDriver" is-config="true" duration-ms="763" started-at="2020-05-06T18:08:14Z" finished-at="2020-05-06T18:08:15Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeDriver -->
